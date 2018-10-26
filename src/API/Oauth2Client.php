@@ -35,8 +35,8 @@ class Oauth2Client
      */
     public static $URL_MAP = [
         'api'           => 'https://{domain}/api/',
-        'authorize'     => 'https://{domain}/authorize/',
-        'token'     => 'https://{domain}/oauth/token/',
+        'authorize'     => 'https://{domain}/auth/',
+        'token'     => 'https://{domain}/token/',
         'user_info'     => 'https://{domain}/userinfo/',
     ];
 
