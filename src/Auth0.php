@@ -188,7 +188,7 @@ class Auth0
      *
      * @var string
      */
-    protected $idTokenAlg = null;
+    protected $idTokenAlg;
 
     /**
      * Valid audiences for ID tokens.
@@ -228,11 +228,12 @@ class Auth0
      *     - persist_id_token       (Boolean) Optional. Persist the ID token, default false
      *     - store                  (Mixed)   Optional. A class that implements StorageInterface or false for none;
      *                                                  leave empty to default to SessionStore
-     *     - state_handler          (Mixed)   Optional  A class that implements StateHandler of false for none;
+     *     - state_handler          (Mixed)   Optional. A class that implements StateHandler of false for none;
      *                                                  leave empty to default to SessionStore SessionStateHandler
      *     - debug                  (Boolean) Optional. Turn on debug mode, default false
-     *     - guzzle_options          (Object) Optional. Options passed to Guzzle
-     *
+     *     - guzzle_options         (Object)  Optional. Options passed to Guzzle
+     *     - session_base_name      (String)  Optional. A common prefix for all session keys. Default `auth0_`
+     *     - session_cookie_expires (Integer) Optional. Seconds for session cookie to expire (if default store is used). Default `604800`
      * @throws CoreException If `domain` is not provided.
      * @throws CoreException If `client_id` is not provided.
      * @throws CoreException If `client_secret` is not provided.
@@ -385,7 +386,7 @@ class Auth0
      * @see \Auth0\SDK\API\Authentication::get_authorize_link()
      * @see https://auth0.com/docs/api/authentication#login
      */
-    public function login($state = null, $connection = null, $additionalParams = [])
+    public function login($state = null, $connection = null, array $additionalParams = [])
     {
         $params = [];
         if ($this->audience) {
