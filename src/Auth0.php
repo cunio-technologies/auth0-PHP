@@ -46,8 +46,8 @@ class Auth0
      */
     public static $URL_MAP = [
         'api'           => 'https://{domain}/api/',
-        'authorize'     => 'https://{domain}/authorize/',
-        'token'     => 'https://{domain}/oauth/token/',
+        'authorize'     => 'https://{domain}/auth/',
+        'token'     => 'https://{domain}/token/',
         'user_info'     => 'https://{domain}/userinfo/',
     ];
 
@@ -626,7 +626,7 @@ class Auth0
         $jwtVerifier = new JWTVerifier([
             'valid_audiences' => ! empty($this->idTokenAud) ? $this->idTokenAud : [ $this->clientId ],
             'supported_algs' => $this->idTokenAlg ? [ $this->idTokenAlg ] : [ 'HS256', 'RS256' ],
-            'authorized_iss' => $this->idTokenIss ? $this->idTokenIss : [ 'https://'.$this->domain.'/' ],
+            'authorized_iss' => $this->idTokenIss ? $this->idTokenIss : [ 'https://'.$this->domain ],
             'client_secret' => $this->clientSecret,
             'secret_base64_encoded' => $this->clientSecretEncoded,
             'guzzle_options' => $this->guzzleOptions,

@@ -59,7 +59,7 @@ class Authentication
     {
         $this->client_id     = $client_id;
         $this->client_secret = $client_secret;
-        $this->domain        = $domain;
+        $this->domain        = $domain . "/protocol/openid-connect";
         $this->guzzleOptions = $guzzleOptions;
         $this->audience      = $audience;
         $this->scope         = $scope;
@@ -123,7 +123,7 @@ class Authentication
 
         $query_string = Psr7\build_query($additional_params);
 
-        return "https://{$this->domain}/authorize?{$query_string}";
+        return "https://{$this->domain}/auth?{$query_string}";
     }
 
     /**
@@ -507,10 +507,9 @@ class Authentication
         }
 
         return $this->apiClient->post()
-        ->oauth()
         ->token()
-        ->withHeader(new ContentType('application/json'))
-        ->withBody(json_encode($options))
+        ->withHeader(new ContentType('application/x-www-form-urlencoded'))
+        ->withBody(http_build_query($options))
         ->call();
     }
 

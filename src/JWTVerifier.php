@@ -61,7 +61,7 @@ class JWTVerifier
      *
      * @var string
      */
-    protected $jwks_path = '.well-known/jwks.json';
+    protected $jwks_path = '/protocol/openid-connect/certs';
 
     /**
      * JWTVerifier Constructor.
