@@ -125,7 +125,7 @@ class JWKFetcher
         //     return null;
         // }
         // $x5c = $this->convertCertToPem($jwk['x5c'][0]);
-        $x5c = 'MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAv2pcyV9muRoOdQ8eQ4Mc54XEaAufiT5FN5uk6EYKaGH02g0NxZV83alyYHBBN2ELSsSsf69OYZ/Dx3heZqESxEvyEl/Jh1kN7xBVl82oh3KUlWSthifdUKxo+8ELZjfA0OBuwpybJq/g0hCwl0WeyNlS/V1Zo9p46Pb7KbXIABkfSjROx+XD0ZHM7jNZg8UD9PMip/Q03Hg8ne89DgJj2py1cMOuDS5XLzKYUInMML/xDN4dIezNhX7oEOU/WPWaQXrLOLXIHdBtWeA0KOOhv+WliC8EksGQBc5+GrqF2aBbBEsk+iSC/H+cmPjzxHtbZ6/rAGKpuinYLq6i8kGvfQIDAQAB';
+        $x5c = env('OPENID_PUBLIC_KEY');
         $x5c = $this->convertCertToPem($x5c);
         $this->cache->set($cache_key, $x5c);
         return $x5c;
