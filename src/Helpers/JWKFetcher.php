@@ -125,7 +125,7 @@ class JWKFetcher
         //     return null;
         // }
         // $x5c = $this->convertCertToPem($jwk['x5c'][0]);
-        $x5c = env('OPENID_PUBLIC_KEY');
+        $x5c = config('openid.public_key');
         $x5c = $this->convertCertToPem($x5c);
         $this->cache->set($cache_key, $x5c);
         return $x5c;
